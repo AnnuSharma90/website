@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+navbar{
+    color: beige;
+}
+.navbar .logo{
+    width: 9rem;
+    height: 6rem;
+}
+.navbar h1{
+    font-family: 'Niconne', cursive;
+    color: beige;
+    
+    margin-right: 33rem;
+}
+.under-nav{
+    max-width: 100vw;
+    height: 1rem;
+    background: hsl(90, 41%, 23%);
+}
+
+.navbar-nav li{
+    padding: 0 1.5rem;
+    text-transform: uppercase;
+}
+.navbar-nav li a{
+    color: hsl(90, 41%, 23%);  
+}
+.carousel-inner img{
+    height: 22rem;
+}
+.capt-color{
+    color: floralwhite;
+}
+
+footer {
+    position: fixed;
+    height: 40px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+@media (max-width: 768px){
+    img{
+        height: 10rem;
+    }
+    .navbar h1{
+        margin-right: auto;
+    }
+}
