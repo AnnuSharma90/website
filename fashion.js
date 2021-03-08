@@ -10,6 +10,7 @@
 //   window.open(image.src);
 // })
 
+
 const cart = document.querySelector(".cart");
 const cartBox = document.querySelector(".cartBox");
 $(cart).click(function () {
@@ -29,21 +30,21 @@ $(close).click(function () {
 //   })
 // }
 
-const view = document.getElementsByClassName("view");
+ const view = document.getElementsByClassName("view");
 
-for (let i = 0; i < view.length; i++) {
-  view[i].addEventListener("click", function (e) {
-    let id = e.target.id;//1_view
-    console.log(id);
-    let idNumeric = id.slice(0,1);
-    //console.log(idNumeric);
-    //let idNumeric = id.substring(0, id.indexOf("_"));
-    let image = document.getElementById(idNumeric + "_img");
-    window.open(image.src);
+ for (let i = 0; i < view.length; i++) {
+   view[i].addEventListener("click", function (e) {
+     let id = e.target.id;//1_view
+     console.log(id);
+     let idNumeric = id.slice(0,1);
+     //console.log(idNumeric);
+     //let idNumeric = id.substring(0, id.indexOf("_"));
+     let image = document.getElementById(idNumeric + "_img");
+     window.open(image.src);
     
     
-  });
-}
+   });
+ }
 
 let items = [];
 const addtocart = document.getElementsByClassName("fa-cart-plus");
@@ -143,48 +144,58 @@ for (let j = 0; j < addtocart.length; j++) {
     }
 
         //adding data to cartbox table//
+    const table = cartBox.querySelector(".table");    
     function loadTable() {
-      const table = cartBox.querySelector(".table");
       let tableData = "";
       let count = 1;
+      
       tableData =
         '<tr><th>S.no</th><th>Item</th><th>Price</th><th>Number of item</th><th class="tp">Total price</th><th>Remove Item</th></tr><tr>Total payable amount:</tr>';
       if (JSON.parse(localStorage.getItem("items")) === null) {
         tableData = `<tr><th colspan="5">${'No items found'}</th></tr>`;
       } else {
         JSON.parse(localStorage.getItem("items")).map((data) => {
-          let total = [];
            total = data.price.slice(1) * data.number;
-          console.log(total);
-          
-          
-             let sum = total.reduce(function(a,b){
-               return (a+b);
-             });
-           console.log(sum);
-
+      
           tableData += `<tr><td> ${count++}</td><td> ${data.name}</td><td>${data.price}</td>
          <td>${data.number}</td><td>${total}</td><td><a id="${count-1}_del" class="delete" onclick=deleteRow(this) >Delete</a>
           </td></tr><tr>${total}</tr>`;
-         
+
+            let sum = [];
+           for(let k=1; k<=table.rows.length; k++){
+           sum.push(parseInt(table.rows[2*k].cells[4].innerHTML));
+            console.log(sum);
+           
+           }
+          //    function result(){
+          //      let res =[];
+          //     res.push(sum.reduce(function(a,b){ return (a+b);}))             
+          //    console.log(res);
+          //    return res;
+          // } 
+       
+     
+          
+    
+
         });
 
         table.innerHTML = tableData;
+        
         //console.log(table.rows[4].cells[4].innerHTML);
 
-        //  function sum(){
-        //        let sumVal = 0;
-        //        for(let k=2; k <= table.rows.length; k++){
-        //          sumVal = parseInt(table.rows[k*2].cells[4].innerHTML);
-        //        }
-        //        return sumVal; 
+          // function sum(){
+          //       let sumVal = 0;
+          //       for(let k=2; k <= table.rows.length; k++){
+          //         sumVal = parseInt(table.rows[k*2].cells[4].innerHTML);
+          //       }
+          //       return sumVal; 
 
-        //      }
-        // let sum = [];
-        // for(let k=1; k<=table.rows.length; k++){
-        //     sum.push(parseInt(table.rows[k*2].cells[4].innerHTML));             
-        // }
-      }
+          //     }
+                     
+
+      }              
+
     }
     
     loadTable();
